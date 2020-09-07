@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Positioning a Crosshair using Inputs</title>
+        <style>
+            label {
+                margin-right: 15px;
+            }
+            .form div {
+                margin-bottom: 10px;
+            }
+
+            .crosshair img {
+                position: absolute;
+                width: 250px;
+                height: 250px;
+            }
+
+            .human-target {
+                position: absolute;
+                right: 150px;
+            }
+
+            body  {
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="form">
+            <div><label>X Coordinate</label><input type="text" id="x-coordinate" /></div>
+            <div><label>Y Coordinate</label><input type="text" id="y-coordinate" /></div>
+            <div><button onclick="updateCrosshairPosition()">Update Crosshair Position</button></div>
+
+            <div class="human-target"><img src="assets/human-target.png" /></div>
+            <div class="crosshair"><img id="crosshair" src="assets/crosshair.png" /></div>
+        </div>
+
+        <script>
+            function updateCrosshairPosition() {
+                let xCoordinate = document.getElementById('x-coordinate').value;
+                let yCoordinate = document.getElementById('y-coordinate').value;
+
+                let crosshair = document.getElementById('crosshair');
+                crosshair.style.left = xCoordinate + 'px';
+                crosshair.style.top = yCoordinate + 'px';
+            }
+        </script>
+    </body>
+</html>

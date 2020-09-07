@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>Making an Object Follow Your Mouse</title>
+        <style>
+            label {
+                margin-right: 15px;
+            }
+            .form div {
+                margin-bottom: 10px;
+            }
+
+            .crosshair img {
+                position: absolute;
+                width: 250px;
+                height: 250px;
+            }
+
+            .human-target {
+                position: absolute;
+                right: 150px;
+            }
+
+            body  {
+                overflow: hidden;
+                cursor: none;
+            }
+
+            .hit {
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                background-color: red;
+                border-radius: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="human-target"><img src="assets/human-target.png" /></div>
+        <div class="crosshair"><img id="crosshair" src="assets/crosshair.png" /></div>
+        <script>
+            let body = document.getElementsByTagName('body')[0];
+
+            function updateCrosshairPosition(event) {
+                let crosshair = document.getElementById('crosshair');
+                let xCoordinate = event.clientX - 125;
+                let yCoordinate = event.clientY - 125;
+                crosshair.style.left = xCoordinate + 'px';
+                crosshair.style.top = yCoordinate + 'px';
+            }
+
+            function onFire(event) {
+                let hit = document.createElement("div");
+                hit.className = 'hit';
+                hit.style.left = event.clientX - 5;
+                hit.style.top = event.clientY - 5;
+                body.appendChild(hit);
+            }
+
+            body.onmousemove = updateCrosshairPosition;
+            body.onclick = onFire;
+
+        </script>
+    </body>
+</html>
